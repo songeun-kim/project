@@ -1,0 +1,12 @@
+package co.kr.playbowling.service;
+
+import co.kr.playbowling.vo.MypageVO;
+
+public interface MypageService {
+
+	//내 정보 조회
+	public MypageVO mypage(String mem_id) throws Exception;
+	
+	//내 정보 수정
+	public void mypage_revice(MypageVO vo) throws Exception;
+}

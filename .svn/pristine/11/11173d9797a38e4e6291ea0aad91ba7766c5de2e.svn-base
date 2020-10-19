@@ -1,0 +1,67 @@
+package co.kr.playbowling.controller;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import co.kr.playbowling.service.MypageService;
+import co.kr.playbowling.vo.MemberVO;
+import co.kr.playbowling.vo.MypageVO;
+
+
+@Controller
+
+@RequestMapping("/mypage/*")
+public class MypageController {
+
+	@Inject
+	private MypageService service;
+	
+	//로그확인
+	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
+	
+	//내 정보 조회
+	
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public void getMypage(MemberVO vo, HttpSession httpSession) throws Exception {
+		
+		if ( httpSession.getAttribute("USER") != null ) {
+			
+			
+			
+			return; 
+			
+		} else {
+			
+		}
+		
+		
+	}
+	
+	//내 정보 수정
+	@RequestMapping(value="/mypage_revice", method=RequestMethod.GET)
+	public void getmypageRevice(@RequestParam("mem_id") String mem_id, Model model) throws Exception {
+		
+		MypageVO vo = service.mypage(mem_id);
+		
+		model.addAttribute("mypage", vo);
+	}
+	
+	//내 정보 수정
+	@RequestMapping(value="/mypage_revice", method=RequestMethod.POST)
+	public String postmypageRevice(MypageVO vo) throws Exception {
+		
+		service.mypage_revice(vo);
+		
+		return "redirect:/mypage"+ vo.getMem_id();
+	}
+	
+}

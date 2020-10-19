@@ -1,0 +1,34 @@
+insert into member
+values( 'test1', '1111', '홍길동1', '길동1', 20, '서울시1', null, 'test1@naver.com', null);
+
+insert into member
+values( 'test2', '2222', '홍길동2', '길동2', 21, '서울시2', null, 'test2@naver.com', null);
+
+insert into member
+values( 'test3', '3333', '홍길동3', '길동3', 22, '서울시3', null, 'test3@naver.com', null);
+
+insert into member
+values( 'test4', '4444', '홍길동4', '길동4', 23, '서울시4', null, 'test4@naver.com', null);
+
+insert into member
+values( 'test5', '5555', '홍길동5', '길동5', 24, '서울시5', null, 'test5@naver.com', null);
+
+insert into member
+values( 'test6', '6666', '홍길동6', '길동6', 25, '서울시6', null, 'test6@naver.com', null);
+
+insert into member
+values( 'test7', '7777', '홍길동7', '길동7', 26, '서울시7', null, 'test7@naver.com', null);
+
+insert into member
+values( 'test8', '8888', '홍길동8', '길동8', 27, '서울시8', null, 'test8@naver.com', null);
+
+
+CREATE TABLE Score (
+mem_id VARCHAR(8),
+gameDate DATE,
+score1 INT(16),
+score2 INT(16),
+score3 INT(16),
+avg INT(16),
+PRIMARY KEY (mem_id)
+);

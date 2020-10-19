@@ -1,0 +1,38 @@
+package co.kr.playbowling.dao;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import co.kr.playbowling.vo.MypageVO;
+
+@Repository
+public class MypageDAOImpl implements MypageDAO {
+
+	@Inject
+	SqlSession sql;
+	
+	private static String namespace = "mappers.mypageMapper";
+	
+	//내 정보 조회
+	@Override
+	public void mypage(MypageVO vo) throws Exception {
+		
+	}
+
+	//내 정보 수정
+	@Override
+	public void mypageUpdate(MypageVO vo) throws Exception {
+		
+		sql.update(namespace + ".mypageUpdate", vo);
+	}
+	
+	//회원탈퇴하기
+	@Override
+	public void memberDelete(MypageVO vo) throws Exception {
+		sql.delete(namespace + ".memberDelete", vo);
+		
+	}
+
+}

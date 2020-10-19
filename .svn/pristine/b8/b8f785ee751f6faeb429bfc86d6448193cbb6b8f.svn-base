@@ -1,0 +1,68 @@
+package co.kr.playbowling.controller;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import co.kr.playbowling.service.MypageService;
+import co.kr.playbowling.vo.MemberVO;
+import co.kr.playbowling.vo.MypageVO;
+
+
+@Controller
+
+@RequestMapping("/mypage/*")
+public class MypageController {
+
+	@Inject
+	private MypageService service;
+	
+	//로그확인
+	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
+	
+	//내 정보 조회
+	
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public void getMypage(@ModelAttribute MypageVO vo, HttpSession httpSession, String mem_id) throws Exception {
+		
+		logger.info("get MypageInfo");
+	}
+	
+	//내 정보 수정
+	@RequestMapping(value="/mypage_revice", method=RequestMethod.GET)
+	public void getmypageUpdate(@RequestParam(value="mem_id",required=false) String mem_id, Model model) throws Exception {
+				
+		logger.info("get Mypage Update");
+	}
+	
+	//내 정보 수정
+	@RequestMapping(value="/mypage_Update", method=RequestMethod.POST)
+	public String postmypageUpdate(MypageVO vo) throws Exception {
+		logger.info("post Mypage Update");
+		
+		service.mypageUpdate(vo);
+		
+		return "redirect:/mypage/mypage";
+	}
+	
+	
+	//탈퇴하기
+	@RequestMapping(value="/memberDelete")
+	public String memberDelete(HttpSession httpSession, MypageVO vo) throws Exception {
+		
+		logger.info("get memberDelete!!");
+		
+		service.memberDelete(vo);
+		httpSession.invalidate();
+		
+		return "redirect:/";
+	}
+}

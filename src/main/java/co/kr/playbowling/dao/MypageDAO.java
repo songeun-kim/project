@@ -1,0 +1,15 @@
+package co.kr.playbowling.dao;
+
+import co.kr.playbowling.vo.MypageVO;
+
+public interface MypageDAO {
+	
+	//내 정보 조회
+		public void mypage(MypageVO vo) throws Exception;
+			
+		//내 정보 수정
+		public void mypageUpdate(MypageVO vo) throws Exception;
+
+		//탈퇴하기
+		public void memberDelete(MypageVO vo) throws Exception;
+}

@@ -21,43 +21,44 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="/resources/image/logo.png">
-        </div>
-        <div class="menu">
-            <div class="menu_top">
-                <ul>
-					<c:choose>
-                		<c:when test="${empty USER }">
-	                   	 	<li><a href="/member/login">Login</a></li>
-	                    	<li><a href="/member/register">Register</a></li>
-                    	</c:when>
-                    
-                    <c:otherwise>
-                    	<li><a href="/member/logout">Logout</a></li>
-                    </c:otherwise>
-                    </c:choose>
-                </ul>
-            </div>
-            <nav>
-                <ul class="navi">
-                    <li><a href="#">동호회</a></li>
-                    <li><a href="#">정기전</a></li>
-                    <li><a href="#">마이페이지</a>
-                        <ul class="submenu">
-                            <li><a href="#">내 정보보기</a></li>
-                            <li><a href="#">개인 점수관리</a></li>
-                            <li><a href="#">정기전 점수관리</a></li>
-                            <li><a href="#">탈퇴</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+      <div class="logo">
+         <img src="/resources/image/logo.png">
+      </div>
+      <div class="menu">
+         <div class="menu_top">
+            <ul>
+               <c:choose>
+                  <c:when test="${empty USER}">
+                     <li><a href="/member/login">Login</a></li>
+                     <li><a href="/member/register">Register</a></li>
+                  </c:when>
+                  <c:otherwise>
+                     <li><a href="/member/logout">Logout</a></li>
+                  </c:otherwise>
+               </c:choose>
+            </ul>
+         </div>
+         <nav id="menu1">
+            <ul class="main">
+               <li><a href="/board/listPage?num=1">동호회</a></li>
+               <li><a href="#">점수 관리</a>
+                  <ul class="sub">
+                     <li><a href="/personal_score/score_select">점수 보기</a></li>
+                     <li><a href="/personal_score/score_insert">점수 추가</a></li>
+                     <li><a href="/personal_score/score_update">점수 수정</a></li>
+                  </ul></li>
+               <li><a href="#">마이페이지</a>
+                  <ul class="sub">
+                     <li><a href="/mypage/mypage">정보 보기</a></li>
+                     <li><a href="/mypage/mypage_revice">정보수정</a></li>
+                  </ul></li>
+            </ul>
+         </nav>
+      </div>
+   </header>
 
     <section id="score_table">
-    <form method="POST" action="/personal_score/scoreView" >
+    <form method="GET" action="/personal_score/score_select" >
         <div class="table_back">
             <h4> 개인 점수 </h4>
               <hr>
@@ -73,29 +74,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                	<c:forEach items="${list }" var="list">
+                	<c:forEach items="${list}" var="scoreVO">
 		                  <tr> 
-		                 	<td><fmt:formatDate value="${list.gameDate}" pattern="yy-MM-dd"/></td>
-		                    <td><c:out value="${list.}" /></td>
-		                    <td><c:out value="${list.score2}" /></td>
-		                    <td><c:out value="${list.score3}" /></td>
-		                    <td><c:out value="${list.avg}" /></td>
+		                 	<td><a href='/personal_score/score_update?seq=${scoreVO.seq }'><fmt:formatDate value="${scoreVO.gameDate}" pattern="yy-MM-dd"/></a></td>
+		                    <td><c:out value="${scoreVO.score1}" /></td>
+		                    <td><c:out value="${scoreVO.score2}" /></td>
+		                    <td><c:out value="${scoreVO.score3}" /></td>
+		                    <td><c:out value="${scoreVO.avg}" /></td>
 		                  </tr>
                   	</c:forEach>
-                  	
                 </tbody>
                 </c:if>
-                
-              </table>
-             <%--  <input type="hidden" name="mem_id" value="${USER.mem_id}" /> --%>
+              </table> 
         	</div>
+        	        	
+        	<div id="click_btn">
+        		<button type="button" id="insert"><a href="/personal_score/score_insert">점수 입력</a></button>
+		        <button type="button" id="update"><a href="/personal_score/score_update">점수 수정</a></button>
+		    </div>
+		    
         </form>
     </section>
 
-    <div id="click_btn">
-        <button type="button" id="insert"><a href="/personal_score/score_insert">점수 입력</a></button>
-        <button type="button" id="update"><a href="/personal_score/score_update">점수 수정</a></button>
-    </div>
+    
     <section id="chart_main">
          <div class="container1" >
             <canvas id="myChart" width="400" height="400"></canvas>
@@ -110,7 +111,9 @@
 	  <p>
 	  <input type="radio" id="r2" name="graph" id="LineGraph" />
 	  <span></span>Line</label>
-	  </div>    
+	  <br ><br>
+	  <button type="button" id="sendAjax">차트 확인</button>
+	 </div>    
 
     <footer>
         <div class="foot_top">

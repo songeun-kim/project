@@ -6,8 +6,10 @@ import co.kr.playbowling.vo.ScoreVO;
 
 public interface ScoreService {
 	
+	public List<ScoreVO> list(String mem_id) throws Exception;
+	
 	//내 점수 조회
-	public List<ScoreVO> list() throws Exception;
+	public ScoreVO read (int seq) throws Exception;
 		
 	//내 점수 추가
 	public void scoreInsert(ScoreVO vo) throws Exception; 

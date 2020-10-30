@@ -34,3 +34,15 @@ CREATE TABLE Score (
 	PRIMARY KEY(seq, mem_id),
 	FOREIGN KEY(mem_id) REFERENCES member(mem_id)
 );
+
+create table board (
+   bnum int not null auto_increment,
+   bpw varchar(30),
+   bid varchar(30),
+
+   btitle varchar(50),
+   bcontent varchar(2000),
+   readcount int(4) default 0,
+   bdate date default current_timestamp,
+   primary key (bnum)   
+);

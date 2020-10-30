@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<title>Play Bowling</title>
   	<link rel="stylesheet" href="/resources/css/mypagemain.css" type="text/css">
-
+	<link rel="stylesheet" href="/resources/css/base.css">
 </head>
 
 <body>

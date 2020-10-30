@@ -6,23 +6,22 @@
  
  	<!-- 점수 조회 -->
  	<select id="list" resultType="co.kr.playbowling.vo.ScoreVO">
- 		SELECT 
- 			mem_id,
-			gameDate,
-			score1,
-			score2,
-			score3,
+ 	
+ 		SELECT
+ 			seq, mem_id, gameDate,
+			score1, score2, score3,
 			avg
-			
 		FROM
 			score
 		WHERE
 			mem_id=#{mem_id}
- 	
+			
+			
  	</select>
  
  	<!-- 점수 추가 -->
  	<insert id="insert" parameterType="co.kr.playbowling.vo.ScoreVO">
+ 		 	
 	 	INSERT INTO SCORE (
 	 		mem_id,
 			gameDate,
@@ -39,7 +38,7 @@
 			#{score3},
 			#{avg}
 		)
- 	
+		
  	</insert>
  
  	<!-- 점수 수정 -->
@@ -52,8 +51,23 @@
  			score3 = #{score3},
  			avg = #{avg}
 		WHERE
-			mem_id = #{mem_id}
+			
+			mem_id=#{mem_id} and
+			seq =#{seq}
  	
  	</update>
+ 	
+ 	<!-- mem_id 기준으로 데이터 불러들이기 -->
+ 	<select id="read" resultType="co.kr.playbowling.vo.ScoreVO">
+	 	
+		   SELECT
+		   		*		   	 	
+		   FROM
+		   		score
+		   WHERE
+		    <!-- mem_id=#{mem_id} and -->
+			seq =#{seq}
+		 	
+ 	</select>
  
  </mapper>

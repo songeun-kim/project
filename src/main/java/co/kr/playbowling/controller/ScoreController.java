@@ -13,8 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.kr.playbowling.service.ScoreService;
 import co.kr.playbowling.vo.ScoreVO;
@@ -34,26 +36,22 @@ public class ScoreController {
 	
 	//로그확인
 	private static final Logger logger = LoggerFactory.getLogger(ScoreController.class);
-	
+		
 	//점수 조회 get
 	@RequestMapping(value="/score_select", method=RequestMethod.GET)
-	public void getScoreView(Model model, ScoreVO vo) throws Exception {
+	public String getScoreView(@ModelAttribute ScoreVO vo, Model model ) throws Exception {
 		
 		logger.info("get ScoreView");
-		
-		List<ScoreVO> list = null;
-		list = service.list();
-				
-		model.addAttribute("list", list);
-		
+		String mem_id = vo.getMem_id();
+		model.addAttribute("list", service.list(mem_id));
+						
+		return "/personal_score/score_select";
 	}
 	
 	//점수 추가 get
 	@RequestMapping(value="/score_insert", method=RequestMethod.GET)
 	public void getScoreInsert() throws Exception {
-		
 		logger.info("get Score InsertView!");
-		
 	}
 	
 	//점수 추가 post
@@ -69,10 +67,25 @@ public class ScoreController {
 	}
 	
 	//점수 수정 get
-	@RequestMapping(value="/score_update")
-	public void getScoreUpdate() throws Exception {
+	@RequestMapping(value="/score_update", method=RequestMethod.GET)
+	public String getScoreUpdate(ScoreVO vo, Model model) throws Exception {
 		
 		logger.info("get Score UpdateView");
 		
+		int seq = vo.getSeq();
+		model.addAttribute("update", service.read(seq)); 
+		 		 		
+		return "personal_score/score_update";
+	}
+	
+	//점수 수정 post
+	@RequestMapping(value="/score_update", method=RequestMethod.POST)
+	public String postScoreUpdate(ScoreVO vo) throws Exception {
+		
+		logger.info("post Score Update");
+		
+		service.scoreUpdate(vo);
+		
+		return "redirect:/personal_score/score_select";
 	}
 }

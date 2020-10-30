@@ -17,10 +17,11 @@ public class ScoreServiceImpl implements ScoreService {
 
 	//점수 조회
 	@Override
-	public List<ScoreVO> list() throws Exception {
+	public ScoreVO read(int seq) throws Exception {
 		
-		return dao.list();
+		return dao.read(seq);
 	}
+	
 	//점수 추가
 	@Override
 	public void scoreInsert(ScoreVO vo) throws Exception {
@@ -35,6 +36,10 @@ public class ScoreServiceImpl implements ScoreService {
 
 	}
 
-	
+	@Override
+	public List<ScoreVO> list(String mem_id) throws Exception {
+		
+		return dao.list(mem_id);
+	}
 
 }

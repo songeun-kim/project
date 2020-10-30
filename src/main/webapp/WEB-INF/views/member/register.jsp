@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -23,23 +24,19 @@
         <div class="form_i">
             <label for="mem_id">아이디(ID)</label>
             <input type="text" id="mem_id" class="form-control" name="mem_id">
-            <!-- <div class="invalid-feedback" style="width:100%;">아이디를 적어주세요.</div> -->
         </div>
         <div class="form_i">
             <label for="mem_pw">비밀번호</label>
             <input type="password" class="form-control" id="mem_pw" name="mem_pw">
-            <!-- <div class="invalid-feedback">유효한 비밀번호가 필요합니다.</div> -->
         </div>
         <div class="form_i">
             <label for="mem_email">이메일</label>
             <input type="email" class="form-control" id="mem_email" placeholder="&ensp;&ensp;yours@example.com"
             name="mem_email">
-            <!-- <div class="invalid-feedback">올바른 이메일을 입력하세요.</div> -->
         </div>
         <div class="form_i">
             <label for="mem_name">이름</label>
             <input type="text" id="mem_name" class="form-control" name="mem_name">
-            <!-- <div class="invalid-feedback" style="width:100%;">이름를 적어주세요.</div> -->
         </div>
         <div class="form_i">
             <label for="mem_nickName">닉네임</label>
@@ -51,7 +48,8 @@
         </div>
         <div class="form_i">
             <label for="mem_address">주소</label>
-            <input type="text" name="mem_address"class="form-control">
+            <input type="text" name="mem_address" class="form-control" id="address">
+            
         </div>        
         <button class="submit_button" type="submit">가입하기</button>
     </form>

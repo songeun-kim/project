@@ -5,28 +5,41 @@ ul{list-style: none;}
 /*header*/
 header{width: 100%; height:100px; background-color: rgb(44, 46, 63);
 position: fixed; top:0; z-index: 10;}
-.logo{ width:130px; float:left; position: fixed; left:495px; top:20px;}
+.logo{ width:130px; float:left; position: fixed; left:545px; top:20px;}
 .logo>img{width:130px; height:auto; }
 
 /*menu*/
-.menu{float: right;  position: fixed; left:974px; top:36px;}
+.menu{float: right;  position: fixed; left:1024px; top:36px;}
 .menu a{color: rgba(255, 255, 255, 0.603);}
 .menu a:hover{color: white; font-weight: bold;}
-.menu_top{ padding-top:5px; position:fixed; left:1350px;
-    top:0;
-    font-size: 13px; float: right;}
+
+.menu_top{ padding-top:5px; position:fixed; left:1450px;
+    top:0; font-size: 13px; float: right;}
 .menu_top li a{float: right; padding-right: 15px;}
 .menu_top li{float:right; }
+
 nav{float:right;}
 .navi li{float: left; }
 .navi>li{padding-right:65px;}
-.submenu{clear:left; background-color: brown; height: 300px;
-position: absolute;left: 0; display: none;}
+.sub{clear:left; height: 300px;
+position: absolute;left: 0; display: none;padding-top: 14px;}
+
+ #menu1{height:50px;}
+    #menu1 ul{width:500px; margin:0 auto; }
+    #menu1 .main>li{float:left; width: 25%; height:50px; line-height: 50px;
+        text-align:center; position: relative; }
+    #menu1 .main>li:hover .sub{display: block;}
+    #menu1 .main>li a{display: block;}
+    #menu1 .main>li a:hover{color: #fff;}
+    #menu1 .main .sub{position: absolute; top:50px; left:0;
+        width: 100%; display: none;}
+    #menu1 .main .sub li{background: rgb(49, 55, 105);}
+    #menu1 .main .sub li a:hover{background-color: #614261;}
 
 
 /*main*/
 /*slideshow*/
-.slide{padding-left:500px; padding-top:100px;}
+.slide{padding-left:550px; padding-top:100px;}
 .slideshow{width:900px; height:600px; float:left; position: relative;
 overflow: hidden; background-color: rgb(109, 111, 129);}
 .slideshow img{width:900px; height:600px; position: absolute;
@@ -34,10 +47,10 @@ transition: all 4s;}
 
 /* maindeco */
 #maindeco_1{width:1100px; height:3px; background-color: rgb(44, 46, 63);
-float:left; margin-top: 40px; margin-left: 390px; margin-bottom: 40px;}
+float:left; margin-top: 40px; margin-left: 440px; margin-bottom: 40px;}
 
 /*menu_a*/
-.menu_index{float:left;clear:left; width: 1000px; padding-left:550px;margin-bottom: 100px;}
+.menu_index{float:left;clear:left; width: 1000px; padding-left:600px;margin-bottom: 100px;}
 .menu_index a{color:black;}
 .menu_a{float: left; padding-right: 70px; }
 .menu_a ul{ border: 1px solid rgb(150, 150, 150);}
@@ -47,6 +60,7 @@ float:left; margin-top: 40px; margin-left: 390px; margin-bottom: 40px;}
 /* footer */
 footer{width: 100%; height:70px; background-color: rgb(44, 46, 63);
     position: fixed; bottom:0; z-index: 10;}
-.foot_top{z-index:30; float:left;width:500px;height:35px; margin-left: 840px;padding-top: 6px;}
-.foot_top li a{ color:rgb(216, 216, 216); float: left; margin-right: 30px;}
+.foot_top{z-index:30; float:left;width:500px;height:35px; margin-left: 825px;padding-top: 6px;}
+.foot_top li a{ color:rgb(216, 216, 216); float: left; margin-left: 12px;}
+.foot_top li { color:rgb(216, 216, 216); float: left; margin-right: 30px; margin-top: 5px;}
 .foot_bot{z-index:30; color:rgb(216, 216, 216); float: left; width:100%; height:35px;text-align: center;}

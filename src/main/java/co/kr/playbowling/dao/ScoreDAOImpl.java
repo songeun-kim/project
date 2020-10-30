@@ -19,16 +19,16 @@ public class ScoreDAOImpl implements ScoreDAO {
 	
 	//내 점수 조회
 	@Override
-	public List<ScoreVO> list() throws Exception {
+	public ScoreVO read(int seq) throws Exception {
 		
-		return sql.selectList(namespace +".list");
+		return sql.selectOne(namespace + ".read", seq);
 	}
 	
 	//점수 추가
 	@Override
 	public void scoreInsert(ScoreVO vo) throws Exception {
-		sql.insert(namespace + ".insert", vo);
 		
+		sql.insert(namespace + ".insert", vo);
 	}
 	
 	//내 점수 수정
@@ -38,8 +38,12 @@ public class ScoreDAOImpl implements ScoreDAO {
 
 	}
 
-	
+	//점수 목록
+	@Override
+	public List<ScoreVO> list(String mem_id) throws Exception {
+		return sql.selectList(namespace + ".list", mem_id);
+	}
 
-	
+
 
 }

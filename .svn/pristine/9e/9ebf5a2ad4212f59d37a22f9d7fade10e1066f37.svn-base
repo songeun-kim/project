@@ -1,0 +1,30 @@
+package co.kr.playbowling.service;
+
+import java.util.List;
+
+import co.kr.playbowling.vo.*;
+
+public interface BoardService {
+	//게시글쓰기
+	public void write(BoardVO board) throws Exception;
+	
+	//게시글 읽기
+	public BoardVO read (int bnum) throws Exception;
+	
+	//게시글 수정
+	public void modify(BoardVO board) throws Exception;
+	
+	//게시글 삭제
+	public void remove(int bnum) throws Exception;
+	
+	//게시글 목록
+	public List<BoardVO> listAll() throws Exception;
+	
+	//총 게시물 갯수 증가
+	public int boardCount() throws Exception;
+	
+	//페이징처리
+	public List listPage(int displayPost, int postNum) throws Exception;
+	
+	
+}

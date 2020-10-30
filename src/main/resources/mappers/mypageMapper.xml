@@ -42,5 +42,4 @@
 			mem_id = #{mem_id}
 	</delete>
 	
-	
 </mapper>

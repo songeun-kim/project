@@ -90,7 +90,6 @@
         	        	
         	<div id="click_btn">
         		<button type="button" id="insert"><a href="/personal_score/score_insert">점수 입력</a></button>
-		        <!-- <button type="button" id="update"><a href="/personal_score/score_update">점수 수정</a></button> -->
 		    </div>
 		    
         </form>

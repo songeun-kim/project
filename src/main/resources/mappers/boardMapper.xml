@@ -6,39 +6,42 @@
 	<!--게시물 작성 -->
 	<insert id="write">	<!-- DAO와 매핑을 위한 ID -->
 		INSERT
-			into board (btitle, bcontent, bid)
+		into board (btitle, bcontent, bid)
 		VALUES
-			(#{btitle}, #{bcontent}, #{bid})
+		(#{btitle}, #{bcontent},
+		#{bid})
 	</insert>
 
 	<!--게시물 읽기 -->
 	<select id="read" resultType="co.kr.playbowling.vo.BoardVO">
-			<!-- DATA를 받아오기 위한 RESULT TYPE 명시 -->
+		<!-- DATA를 받아오기 위한 RESULT TYPE 명시 -->
 		SELECT
-			bnum, btitle, bcontent, bid, bdate, readcount
+		bnum, btitle, bcontent, bid, bdate, readcount
 		FROM
-			board
+		board
 		WHERE
-			bnum = #{bnum}
+		bnum
+		= #{bnum}
 	</select>
 
 	<!-- 게시글 수정 : PK 인 bnum 기준으로 글 제목과 내용 수정 -->
 	<update id="update">
 		UPDATE
-			board
+		board
 		SET
-			btitle = #{btitle},
-			bcontent =#{bcontent}
+		btitle = #{btitle},
+		bcontent
+		=#{bcontent}
 		WHERE
-			bnum = #{bnum}
+		bnum = #{bnum}
 	</update>
 
 	<!-- 게시글 삭제 : bnum 기준으로 해당 데이터 삭제 -->
 	<delete id="delete">
 		DELETE FROM
-			board
+		board
 		WHERE
-			bnum = #{bnum}
+		bnum = #{bnum}
 	</delete>
 
 	<!-- bnum 기준으로 모든 데이터 불러들임 -->
@@ -53,28 +56,86 @@
 	 order by bnum desc
 		 ]]>
 	</select>
-	
-	<!-- 조회수 증가  -->
+
+	<!-- 조회수 증가 -->
 	<update id="updateReadCount">
 		update board
 		set readcount = readcount+1
-		where bnum=#{bnum}
+		where
+		bnum=#{bnum}
 	</update>
-	
+
 	<!-- 게시물 총 갯수 -->
 	<select id="boardCount" resultType="int">
 		select count (bnum)
 		from board
 	</select>
-	
+
+
+
 	<!-- 게시물 목록 + 페이징 -->
-	<select id="listPage" parameterType="HashMap" resultType="co.kr.playbowling.vo.BoardVO">
+	<select id="listPage" parameterType="HashMap"
+		resultType="co.kr.playbowling.vo.BoardVO">
 		select
-			bnum, btitle, bid, bdate, readcount
+		bnum, btitle, bid, bdate, readcount
 		from board
-			order by bnum desc
-			limit #{displayPost}, #{postNum} 
+		order by
+		bnum desc
+		limit #{displayPost}, #{postNum}
 	</select>
-	
-	
+
+
+	<!-- 게시물 목록 + 페이징 + 검색 -->
+	<select id="listPageSearch" parameterType="hashMap"
+		resultType="co.kr.playbowling.vo.BoardVO">
+		select
+		bnum, btitle, bid, bdate, readcount
+		from board
+
+		<if test='searchType.equals("btitle")'>
+			WHERE btitle LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='searchType.equals("bcontent")'>
+			WHERE bcontent LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='searchType.equals("btitle_bcontent")'>
+			WHERE btitle LIKE concat('%', #{keyword}, '%')
+			or content
+			LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='searchType.equals("bid")'>
+			WHERE bid LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		order by bnum desc
+		limit #{displayPost}, #{postNum}
+	</select>
+
+	<!-- 게시물 총 갯수 + 검색 적용 -->
+	<select id="searchCount" resultType="int"
+		parameterType="hashMap">
+		select count (bnum)
+		from board
+		<if test='searchType.equals("btitle")'>
+			WHERE btitle LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='searchType.equals("bcontent")'>
+			WHERE bcontent LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='searchType.equals("btitle_bcontent")'>
+			WHERE btitle LIKE concat('%', #{keyword}, '%')
+			or bcontent LIKE concat('%', #{keyword}, '%')
+		</if>
+
+		<if test='searchType.equals("bid")'>
+			WHERE bid LIKE concat('%', #{keyword}, '%')
+		</if>
+	</select>
+
+
 </mapper>

@@ -90,14 +90,14 @@
         	        	
         	<div id="click_btn">
         		<button type="button" id="insert"><a href="/personal_score/score_insert">점수 입력</a></button>
-		        <button type="button" id="update"><a href="/personal_score/score_update">점수 수정</a></button>
+		        <!-- <button type="button" id="update"><a href="/personal_score/score_update">점수 수정</a></button> -->
 		    </div>
 		    
         </form>
     </section>
 
     
-    <section id="chart_main">
+    <%-- <section id="chart_main">
          <div class="container1" >
             <canvas id="myChart" width="400" height="400"></canvas>
         </div>
@@ -113,7 +113,7 @@
 	  <span></span>Line</label>
 	  <br ><br>
 	  <button type="button" id="sendAjax">차트 확인</button>
-	 </div>    
+	 </div>  --%>   
 
     <footer>
         <div class="foot_top">
